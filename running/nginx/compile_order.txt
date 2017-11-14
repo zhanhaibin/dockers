@@ -1,0 +1,15 @@
+ibas.root
+ibas.initialfantasy
+ibas.integration
+ibas.importexport
+ibas.documents
+ibas.approvalprocess
+ibas.feedback
+ibas.reportanalysis
+ibas.businessone
+ibas.materials
+ibas.businesspartner
+ibas.purchase
+ibas.sales
+ibas.payments
+ibas.receipts

@@ -1,0 +1,71 @@
+# 基于官方tomcat镜像
+FROM tomcat
+
+# 作者
+MAINTAINER Niuren.Zhu "niuren.zhu@icloud.com"
+
+# 定义环境变量
+ENV \
+# ibas目录
+    IBAS_HOME=${CATALINA_HOME}/ibas
+ENV \
+# ibas配置目录
+    IBAS_CONF=${IBAS_HOME}/conf \
+# ibas数据目录
+    IBAS_DATA=${IBAS_HOME}/data \
+# ibas日志目录
+    IBAS_LOG=${IBAS_HOME}/logs \
+# ibas共享目录
+    IBAS_LIB=${CATALINA_HOME}/ibas_lib \
+# ibas部署目录
+    IBAS_DEPLOY=${CATALINA_HOME}/webapps \
+# ibas下载目录
+    IBAS_PACKAGE=${CATALINA_HOME}/ibas_packages \
+# ibas工具目录
+    IBAS_TOOLS=${CATALINA_HOME}/ibas_tools
+
+# 创建数据文件夹
+RUN mkdir -p ${IBAS_PACKAGE}; \
+    mkdir -p ${IBAS_TOOLS}; \
+    mkdir -p ${IBAS_LIB}; \
+    mkdir -p ${IBAS_CONF}; \
+    mkdir -p ${IBAS_DATA}; \
+    mkdir -p ${IBAS_LOG};
+
+# 拷贝配置文件
+COPY ./ibas_conf/ ${IBAS_CONF}/
+COPY ./tomcat_conf/ ${CATALINA_HOME}/conf/
+
+# 拷贝工具文件
+ADD btulz.transforms.tar ${IBAS_TOOLS}/
+COPY deploy_apps.sh ${CATALINA_HOME}/
+COPY initialize_datastructures.sh ${CATALINA_HOME}/
+COPY initialize_datas.sh ${CATALINA_HOME}/
+# 修改脚本权限
+RUN chmod 755 ${CATALINA_HOME}/deploy_apps.sh
+RUN chmod 755 ${CATALINA_HOME}/initialize_datastructures.sh
+RUN chmod 755 ${CATALINA_HOME}/initialize_datas.sh
+
+
+# 拷贝应用包文件
+COPY ./ibas_packages/ ${IBAS_PACKAGE}/
+
+# 清理TOMCAT自带网站
+RUN rm -rf ${IBAS_DEPLOY}; \
+    mkdir -p ${IBAS_DEPLOY};
+
+# 部署ibas程序
+RUN set -x \
+# 下载最新的程序war包
+# 释放war包
+    && ${CATALINA_HOME}/deploy_apps.sh \
+# 删除下载的包
+    && rm -rf ${IBAS_PACKAGE} \
+# 调整权限
+    && chmod -R 777 ${IBAS_DEPLOY}
+
+# 映射ibas数据目录
+VOLUME [${IBAS_HOME}]
+
+# 设置工作目录
+WORKDIR ${CATALINA_HOME}

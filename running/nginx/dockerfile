@@ -1,0 +1,77 @@
+# 基于nginx镜像的ibas镜像
+# OS：debian:jessie
+FROM colorcoding/nginx
+
+# 作者
+MAINTAINER Niuren.Zhu "niuren.zhu@icloud.com"
+
+
+# 定义环境变量
+ENV \
+# nginx目录
+    NGINX_HOME=/usr/share/nginx
+ENV \
+# ibas部署目录
+    IBAS_DEPLOY=${NGINX_HOME}/webapps \
+# ibas下载目录
+    IBAS_PACKAGE=${NGINX_HOME}/ibas_packages 
+    
+# 初始化环境
+RUN mkdir -p "${IBAS_DEPLOY}";
+
+# 拷贝配置文件
+COPY "ibas.nginx.conf" "/etc/nginx/nginx.conf"
+COPY "ibas.index.html" "${IBAS_DEPLOY}/index.html"
+COPY "ibas_packages/" "${IBAS_PACKAGE}/"
+# 部署ibas程序
+RUN set -x \
+# 排序ibas.deploy.order.txt，此文件为部署顺序说明。
+    && if [ ! -e "${IBAS_PACKAGE}/ibas.deploy.order.txt" ]; then \
+          ls -l "${IBAS_PACKAGE}/*.war" | awk '//{print $NF}' >>"${IBAS_PACKAGE}/ibas.deploy.order.txt"; \
+       fi \
+# 释放war包
+    && (while read file; \
+       do \
+         file=${file%%.war*}.war; \
+         echo 释放"${IBAS_PACKAGE}/${file}"; \
+# 修正war包的解压目录
+         folder=${file##*ibas.}; \
+         folder=${folder%%.service*}; \
+# 记录释放的目录到ibas.release.txt
+         if [ ! -e "${IBAS_DEPLOY}/ibas.release.txt" ]; then :>"${IBAS_DEPLOY}/ibas.release.txt"; fi; \
+         grep -q ${folder} "${IBAS_DEPLOY}/ibas.release.txt" || echo "${folder}" >>"${IBAS_DEPLOY}/ibas.release.txt"; \
+# 解压war包
+         unzip -o "${IBAS_PACKAGE}/${file}" -d "${IBAS_DEPLOY}/${folder}"; \
+# 删除没用的文件
+         if [ -e "${IBAS_DEPLOY}/${folder}/WEB-INF" ]; then \
+           rm -rf "${IBAS_DEPLOY}/${folder}/WEB-INF"; \
+         fi; \
+         if [ -e "${IBAS_DEPLOY}/${folder}/META-INF" ]; then \
+           rm -rf "${IBAS_DEPLOY}/${folder}/META-INF"; \
+         fi; \
+       done < "${IBAS_PACKAGE}/ibas.deploy.order.txt" | sed 's/\r//g';) \
+	   
+       # 调整权限
+       && chmod -R 777 "${IBAS_DEPLOY}"
+
+#复制root下openui5，到各个模块下
+RUN set -x \ 
+	
+    && if [ ! -e "${IBAS_PACKAGE}/ibas.deploy.order.txt" ]; then \
+          ls -l "${IBAS_PACKAGE}/*.war" | awk '//{print $NF}' >>"${IBAS_PACKAGE}/ibas.deploy.order.txt"; \
+       fi \
+    && (while read file; \
+       do \
+       	file=${file%%.war*}.war; \
+	folder=${file##*ibas.}; \
+	folder=${folder%%.service*}; \
+	mkdir -p "${IBAS_DEPLOY}/${folder}/openui5/typings/";  \
+	cp -rp "${IBAS_DEPLOY}/root/openui5/typings/" "${IBAS_DEPLOY}/${folder}/openui5/"; \
+       done < "${IBAS_PACKAGE}/ibas.deploy.order.txt" | sed 's/\r//g';) \
+
+	# 删除下载的包
+    && rm -rf "${IBAS_PACKAGE}" 
+
+	
+# 设置工作目录
+WORKDIR "${NGINX_HOME}"

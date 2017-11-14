@@ -1,0 +1,11 @@
+.git
+.vs
+.gitignore
+tmp
+temp
+LICENSE
+*.md
+*.gif
+*.bat
+*.zip
+build_dockerfile.sh

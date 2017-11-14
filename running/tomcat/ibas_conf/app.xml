@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE configuration>
+<ns2:configuration xmlns:ns2="http://colorcoding.org/ibas/bobas/configuration">
+    <appSettings>
+        <!--配置项目-公司标记-->
+        <add key="Company" value="AVA" />
+        <!--配置项目-是否开启调试模式-->
+        <add key="DebugMode" value="true" />
+        <!-- 配置项目-数据库类型 -->
+        <add key="MasterDbType" value="MYSQL" />
+        <!-- 配置项目-数据库地址-->
+        <add key="MasterDbServer" value="ibas-srv-db" />
+        <!-- 配置项目-数据库名称 -->
+        <add key="MasterDbName" value="ibas_demo2" />
+        <!-- 配置项目-数据库用户名称 -->
+        <add key="MasterDbUserID" value="root" />
+        <!-- 配置项目-数据库用户密码 -->
+        <add key="MasterDbUserPassword" value="avarun" />
+        <!--配置项目-序列化管理方式-->
+        <add key="SerializationWay" value="jersey" />
+        <!-- 配置项目-对象删除前重新加载 -->
+        <add key="RefetchBeforeDelete" value="true" />
+        <!-- 配置项目-审批方法 -->
+        <add key="ApprovalWay" value="initial" />
+        <!-- 配置项目-组织方式 -->
+        <add key="OrganizationWay" value="initial" />
+        <!-- 配置项目-权限判断方式 -->
+        <add key="OwnershipWay" value="initial" />
+        <!-- 配置项目-报表工厂，多个时“;”分隔 -->
+        <add key="ReporterFactories" value="org.colorcoding.ibas.boe.reporter.ReporterFactory;" />
+        <!-- 配置项目-转换者工厂，多个时“;”分隔 -->
+        <add key="TransformerFactories" value="org.colorcoding.ibas.importexport.transformers.excel.TransformerFactory;" />
+        <!-- 配置项目-BOE地址 -->
+        <add key="BOEAddress" value="http://bo.b1plus.cn:8080" />
+    </appSettings>
+</ns2:configuration>

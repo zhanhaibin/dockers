@@ -1,0 +1,40 @@
+# 基于官方node的镜像，做java 和maven 环境
+FROM node
+# 作者
+MAINTAINER zhanhaibin
+
+# 定义变量
+ENV IBAS=/srv/ibas/
+
+#初始化定义变量
+RUN mkdir -p "${IBAS}" 
+
+# 拷贝配置文件
+COPY "builds.sh" "${IBAS}"
+COPY "compile_order.txt" "${IBAS}"
+COPY "compiles.sh" "${IBAS}"
+COPY "git-ibas.sh" "${IBAS}"
+COPY "git-ibas-framework.sh" "${IBAS}"
+COPY "git-ibas-cloud.sh" "${IBAS}"
+COPY "compile_cloud_order.txt" "${IBAS}"
+COPY "deploy_wars.sh" "${IBAS}"
+COPY "settings.xml" "${IBAS}"
+COPY "git-tf" "${IBAS}/git-tf"
+
+
+#java及maven安装包，并自动释放
+ADD jdk-8u144-linux-x64.tar.gz /usr/local
+ADD apache-maven-3.5.0-bin.tar.gz /usr/local
+
+
+#定义环境变量
+ENV JAVA_HOME /usr/local/jdk1.8.0_144
+ENV M2_HOME /usr/local/apache-maven-3.5.0
+ENV PATH $PATH:$JAVA_HOME/bin:$M2_HOME/bin
+RUN cp "${IBAS}"settings.xml /usr/local/apache-maven-3.5.0/conf/
+
+RUN rm -f /usr/local/jdk-8u144-linux-x64.tar.gz
+RUN rm -f /usr/local/apache-maven-3.5.0-bin.tar.gz
+
+RUN npm install -g typescript
+
