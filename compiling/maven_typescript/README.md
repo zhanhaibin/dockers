@@ -1,4 +1,5 @@
-maven_typescript 构建docker image后操作
+maven_typescript ibas应用程序编译，打包，上传私有仓库的镜像
+
 
 1、使用git-ibas-framework 获取ibas-framework最新代码
 
