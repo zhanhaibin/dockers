@@ -1,10 +1,8 @@
 maven_typescript ibas应用程序编译，打包，上传私有仓库的镜像
 
-基于官方node的镜像，做java 和maven 编译环境
+基于colorcoding/compiling:ibas-gtf-alpine镜像，做java 和maven 编译环境
 
-1、构建maven_typescript的docker时，apache-maven-3.5.0-bin.tar.gz和 jdk-8u144-linux-x64.tar.gz 这两个安装包需要在同目录下
-
-2、运行sh	build_dockerfile.sh   生成镜像，默认为colorcoding/maven_typescript 版本为当前日期
+1、运行sh	build_dockerfile.sh   生成镜像，默认为colorcoding/maven_typescript 版本为当前日期
 
 -------------------------------------------------------------------------------------------------------------------------
 以下文件会在创建镜像时，会自动拷贝到镜像内
