@@ -40,7 +40,7 @@ fi
 # 遍历当前目录存
 while read file
 do
-	echo 'Git TF pull： '$file}
+	echo 'Git TF pull： '$file
 	rm -r "${file}"
         git tf clone http://tfs.avatech.com.cn:8080/tfs/ibas_cloud $/"${file}" "${IBAS}${file}"; 
         echo '****************************************************************************'

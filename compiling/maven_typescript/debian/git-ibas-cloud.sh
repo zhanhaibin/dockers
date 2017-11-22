@@ -40,9 +40,9 @@ fi
 # 遍历当前目录存
 while read file
 do
-	echo 'Git TF pull： '$file}
+	echo 'Git TF pull： '$file
 	rm -r "${file}"
-        git tf clone http://192.168.3.32:8080/tfs/ibas_cloud $/"${file}" "${IBAS}${file}"; 
+        git tf clone http://tfs.avatech.com.cn:8080/tfs/ibas_cloud $/"${file}" "${IBAS}${file}"; 
         echo '****************************************************************************'
 done < ${WORK_FOLDER}/compile_cloud_order.txt 
 cd ${WORK_FOLDER}
