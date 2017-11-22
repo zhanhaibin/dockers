@@ -1,5 +1,7 @@
 # 基于官方node的镜像，做java 和maven 环境
+
 FROM colorcoding/compiling:ibas-gtf-alpine
+
 # 作者
 MAINTAINER zhanhaibin
 
