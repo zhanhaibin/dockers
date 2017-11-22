@@ -26,3 +26,4 @@ COPY "git-btulz.transforms.sh" "${IBAS}"
 RUN cp "${IBAS}"settings.xml /usr/share/java/maven-3/conf/
 
 
+
