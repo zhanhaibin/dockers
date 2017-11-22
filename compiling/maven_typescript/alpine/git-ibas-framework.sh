@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo '****************************************************************************'
 echo '              git-ibas-framework.sh                                                     '
 echo '                      by zhanhaibin                                         '

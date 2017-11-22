@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo '****************************************************************************'
 echo '              git_ibas_cloud.sh                                                   '
 echo '                      by zhanhaibin                                         '

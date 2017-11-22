@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 echo '****************************************************************************'
 echo '              git-btulz.transforms.sh                                                     '
 echo '                      by zhanhaibin                                         '
