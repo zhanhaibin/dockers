@@ -15,7 +15,7 @@ NAME_TAG=${NAME}:${TAG}
 
 echo 开始下载war包
 
-sh download_wars.sh
+./download_wars.sh
 
 echo 开始构建镜像${NAME_TAG}
 # 调用docker build
