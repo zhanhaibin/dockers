@@ -26,7 +26,6 @@ ENV \
 
 # 创建数据文件夹
 RUN mkdir -p ${IBAS_PACKAGE}; \
-    mkdir -p ${IBAS_TOOLS}; \
     mkdir -p ${IBAS_LIB}; \
     mkdir -p ${IBAS_CONF}; \
     mkdir -p ${IBAS_DATA}; \

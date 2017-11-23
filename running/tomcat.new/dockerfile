@@ -1,0 +1,38 @@
+# 基于官方colorcoding/tomcat:ibas镜像
+FROM colorcoding/tomcat:ibas
+# 作者
+MAINTAINER ZHANHAIBIN
+
+# 定义环境变量
+ENV \
+# ibas目录
+    IBAS_HOME=${CATALINA_HOME}/ibas
+ENV \
+# ibas下载目录
+    IBAS_PACKAGE=${CATALINA_HOME}/ibas_packages \
+# ibas部署目录
+    IBAS_DEPLOY=${CATALINA_HOME}/webapps 
+
+# 创建数据文件夹
+RUN mkdir -p ${IBAS_PACKAGE}; 
+
+# 拷贝应用包文件
+COPY ./ibas_packages/ ${IBAS_PACKAGE}/
+
+# 清理TOMCAT自带网站                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+RUN rm -rf ${IBAS_DEPLOY}; \
+    mkdir -p ${IBAS_DEPLOY};
+
+# 部署ibas程序
+RUN set -x \
+# 下载最新的程序war包
+# 释放war包
+    && ${CATALINA_HOME}/deploy_apps.sh \
+# 删除下载的包
+    && rm -rf ${IBAS_PACKAGE} \
+# 调整权限
+    && chmod -R 777 ${IBAS_DEPLOY}
+
+
+# 设置工作目录
+WORKDIR ${CATALINA_HOME}
