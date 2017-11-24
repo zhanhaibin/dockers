@@ -2,7 +2,11 @@ maven_typescript ibas应用程序编译，打包，上传私有仓库的镜像
 
 基于colorcoding/compiling:ibas-gtf-alpine镜像，做java 和maven 编译环境
 
-1、运行sh	build_dockerfile.sh   生成镜像，默认为colorcoding/maven_typescript 版本为当前日期
+1、运行 ./docker_compile.sh 执行启动容器。并拷贝相关文件到容器。
+
+2、通过容器命令，直接执行容器脚本
+
+3、最后编译通过后，通过deploy_wars.sh 发布到maven私服
 
 -------------------------------------------------------------------------------------------------------------------------
 以下文件会在创建镜像时，会自动拷贝到镜像内
@@ -26,6 +30,8 @@ maven_typescript ibas应用程序编译，打包，上传私有仓库的镜像
 8、compiles.sh 后台编辑脚本
 
 9、deploy_wars.sh    将编译后war包，发布到maven私有仓库
+
+10、copy_wars.sh 重新梳理资源包
 
 
 
