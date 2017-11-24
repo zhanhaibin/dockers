@@ -19,6 +19,8 @@ echo '**************************************************************************
 WORK_FOLDER=`pwd`
 # 版本信息
 VERSION=date "+%Y%m%d%H%M"
+
+echo 版本信息："$VERSION"
 # 仓库地址
 REPOSITORY_URL=$2
 if [ "${REPOSITORY_URL}" == "" ];then REPOSITORY_URL=http://10.0.8.50:8081/repository/maven-releases; fi;
