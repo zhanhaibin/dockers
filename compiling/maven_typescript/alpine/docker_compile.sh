@@ -47,6 +47,8 @@ docker exec -it ${DOCKER_ID} ${CODE_HOME}/builds.sh
 docker exec -it ${DOCKER_ID} ${CODE_HOME}/compiles.sh
 # 整理包
 docker exec -it ${DOCKER_ID} ${CODE_HOME}/copy_wars.sh ${CODE_HOME}
+# 发布包
+docker exec -it ${DOCKER_ID} ${CODE_HOME}/deploy_wars.sh
 # 清理资源
 echo --停止容器：
 docker stop ${DOCKER_ID}
