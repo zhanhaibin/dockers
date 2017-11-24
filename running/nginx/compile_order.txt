@@ -13,3 +13,5 @@ ibas.purchase
 ibas.sales
 ibas.payments
 ibas.receipts
+ibas.commoditycenter
+ibas.channelmanagement
