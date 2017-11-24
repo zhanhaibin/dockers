@@ -28,7 +28,6 @@ CODE_HOME=/home/code
 echo --复制脚本：...:${CODE_HOME}
 # 复制脚本及其他
 docker cp ${WORK_FOLDER}/compile_order.txt ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/git_clones.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/builds.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/compiles.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/deploy_wars.sh ${DOCKER_ID}:${CODE_HOME}
