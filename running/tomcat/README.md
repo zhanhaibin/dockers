@@ -1,5 +1,5 @@
 # docker4ibas tomcat
-为ibas创建的docker4tomcat相关内容。
+为ibas创建的docker4tomcat相关内容。直接基于官方Tomcat镜像
 
 ### 使用说明 | instructions
 * build_dockerfile.sh                   使用dockerfile创建容器镜像，若ibas_packages中无war包则自动下载
