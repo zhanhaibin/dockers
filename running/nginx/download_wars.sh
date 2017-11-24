@@ -29,6 +29,7 @@ if [ "${IBAS_PACKAGE}" == "" ];then IBAS_PACKAGE=${WORK_FOLDER}/ibas_packages; f
 if [ ! -e "${IBAS_PACKAGE}" ];then mkdir -p "${IBAS_PACKAGE}"; fi;
 cd ${IBAS_PACKAGE} 
 rm ibas.*.war
+rm ibas.deploy.order.txt
 
 cd ${WORK_FOLDER}
 #nexus3 地址

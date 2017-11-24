@@ -1,4 +1,4 @@
-# 基于官方colorcoding/tomcat:ibas镜像
+# 基于colorcoding/tomcat:ibas镜像
 FROM colorcoding/tomcat:ibas
 # 作者
 MAINTAINER ZHANHAIBIN
