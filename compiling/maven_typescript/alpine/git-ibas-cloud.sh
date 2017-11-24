@@ -27,7 +27,7 @@ fi
 echo --工作的目录：${WORK_FOLDER}
 
 #设置GIT-TF环境变量
-export PATH="$PATH:/srv/ibas/git-tf-2.0.3.20131219/"
+#export PATH="$PATH:/srv/ibas/git-tf-2.0.3.20131219/"
 #配置Git-tf的默认用户名、密码
 git config --global git-tf.server.username avatech\\ibas_publisher
 git config --global git-tf.server.password 1q2w\#E\$R
