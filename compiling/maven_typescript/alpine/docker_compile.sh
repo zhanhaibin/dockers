@@ -43,7 +43,7 @@ docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:/usr/share/java/maven-3/conf/
 echo --开始运行脚本
 # 下载代码
 docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh
-#docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas-cloud.sh
+docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas-cloud.sh
 # 编译代码
 docker exec -it ${DOCKER_ID} ${CODE_HOME}/builds.sh
 docker exec -it ${DOCKER_ID} ${CODE_HOME}/compiles.sh
