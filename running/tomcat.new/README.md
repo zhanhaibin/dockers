@@ -16,7 +16,7 @@ docker run -it --name=C01-01-SERVICE -m 512m --memory-swap 0 -v /etc/localtime:/
 
 -m 512m 设置内存大小 512m
 
---memory-swap -1  内存+交换分区大小总限制，--memory-swap必须比-m,--memory大；给--memory-swap设置成 -1。这种情况表示限制容器能使用的内存大小为 a，而不限制容器能使用的 swap 分区大小。
+--memory-swap  内存+交换分区大小总限制，--memory-swap必须比-m,--memory大；给--memory-swap设置成 0。容器能使用的内存大小为 a，能使用的交换分区大小也为 a。因为 Docker 默认容器交换分区的大小和内存相同。
 
 引用：
 
