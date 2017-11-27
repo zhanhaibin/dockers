@@ -3,6 +3,9 @@ FROM colorcoding/tomcat:ibas
 # 作者
 MAINTAINER ZHANHAIBIN
 
+# 定义时区
+RUN /bin/cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone 
+
 # 定义环境变量
 ENV \
 # ibas目录
@@ -12,6 +15,10 @@ ENV \
     IBAS_PACKAGE=${CATALINA_HOME}/ibas_packages \
 # ibas部署目录
     IBAS_DEPLOY=${CATALINA_HOME}/webapps 
+
+# jvisualvm 监控端口设置 
+ENV CATALINA_OPTS="-Djava.rmi.server.hostname=10.0.8.50  -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8971 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.rmi.port=8971"
+EXPOSE 8080 8971
 
 # 创建数据文件夹
 RUN mkdir -p ${IBAS_PACKAGE}; 
