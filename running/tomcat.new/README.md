@@ -12,7 +12,7 @@ compile_order.txt 下载所需的资源文件
 
 运行：
 
-docker run -it --name=C01-01-SERVICE -m 512m --memory-swap -1 -v /etc/localtime:/etc/localtime -p 8971:8971 -d colorcoding/tomcat:C01-02
+docker run -it --name=C01-01-SERVICE -m 512m --memory-swap 0 -v /etc/localtime:/etc/localtime -p 8971:8971 -d colorcoding/tomcat:C01-01
 
 -m 512m 设置内存大小 512m
 
