@@ -13,4 +13,4 @@ ibas.purchase
 ibas.sales
 ibas.payments
 ibas.receipts
-organizedposts
+ibas.organizedposts
