@@ -35,6 +35,8 @@ if [ $? -ne 0 ]; then
   echo 请检查MAVEN是否正常
   exit 1;
 fi
+# 设置settings.xml文件
+cp settings.xml ${MAVEN_HOME}/conf/
 
 echo --工作目录：${WORK_FOLDER}
 echo --发布地址：${REPOSITORY_URL}
