@@ -30,8 +30,9 @@ echo ------------------------------------------------------------------
 echo 清理nginx.xml配置文件，根据参数复制新文件
 if [ -e "/srv/git/ibas/nginx/${TAG}.nginx.conf" ] ; then 
   sudo rm -rf /srv/git/ibas/nginx/${TAG}.nginx.conf
-  cp /srv/git/ibas/nginx/ibas.nginx.conf /srv/git/ibas/nginx/${TAG}.nginx.conf 
 fi;
+cp /srv/git/ibas/nginx/ibas.nginx.conf /srv/git/ibas/nginx/${TAG}.nginx.conf 
+
 # 替换数据库名称
 sed -i "s/SERVERNAME/$TAG-SERVICE/g" /srv/git/ibas/nginx/${TAG}.nginx.conf
 echo 查看nginx.conf配置文件
