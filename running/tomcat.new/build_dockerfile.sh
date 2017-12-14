@@ -50,6 +50,8 @@ docker cp /srv/git/ibas/tomcat/conf/${TAG}.app.xml ${TAG}-SERVICE:/usr/local/tom
 docker cp /srv/git/ibas/tomcat/conf/config.json ${TAG}-SERVICE:/usr/local/tomcat/ibas/conf/config.json
 docker cp /srv/git/ibas/tomcat/conf/service_routing.xml ${TAG}-SERVICE:/usr/local/tomcat/ibas/conf/service_routing.xml
 echo ------------------------------------------------------------------
+# 拷贝文件
+docker cp deploy_documents.sh ${TAG}-SERVICE:/usr/local/tomcat/
 # 执行创建数据库脚本
 echo 开始创建数据库：${TAG}
 docker exec -it ${TAG}-SERVICE ./initialize_datastructures.sh
@@ -58,6 +60,10 @@ echo ------------------------------------------------------------------
 echo 开始初始化数据：${TAG}
 docker exec -it ${TAG}-SERVICE ./initialize_datas.sh
 echo 初始化数据完成
+echo ------------------------------------------------------------------
+echo 执行创建文件文件软链接
+docker exec -it ${TAG}-SERVICE ./deploy_documents.sh 
+echo 共享文件软链接完成
 echo ------------------------------------------------------------------
 # 重启容器
 docker restart ${TAG}-SERVICE 

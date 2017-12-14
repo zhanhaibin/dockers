@@ -30,6 +30,6 @@ echo 文件共享目录：${IBAS_DOCUMENT}
 echo ----------------------------------------------------
 
 if [ -e "${IBAS_DEPLOY}/documents/resources/files" ]; then rm -rf "${IBAS_DEPLOY}/documents/resources/files"; fi;
-        ln -s -d "${IBAS_DOCUMENT}" "${IBAS_DEPLOY}/documents/resources/files/"
+        ln -s -d "${IBAS_DOCUMENT}" "${IBAS_DEPLOY}/documents/resources/files"
 
 echo 操作完成
