@@ -42,7 +42,8 @@ echo 查看app.xml配置文件
 cat /srv/ibas/tomcat/conf/${TAG}.app.xml
 # 启动容器
 echo 容器启动： ${TAG}-SERVICE
-docker run -it --name=${TAG}-SERVICE -m 512m --memory-swap 0 -v /etc/localtime:/etc/localtime -d ${NAME_TAG}
+docker run -it --name=${TAG}-SERVICE -m 512m --memory-swap 0 -v /etc/localtime:/etc/localtime -v/srv/ibas/Customers/${TAG}/data/:/usr/local/tomcat/ibas/data/ -d ${NAME_TAG}
+
 echo ------------------------------------------------------------------
 # 拷贝配置文件到容器
 echo 拷贝配置文件到容器
