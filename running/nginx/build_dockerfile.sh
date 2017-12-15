@@ -54,4 +54,6 @@ echo ------------------------------------------------------------------
 
 # 重启容器nginx服务
 docker exec -it ${TAG}-WEB service nginx reload
+# 重启容器
+docker restart ${TAG}-WEB 
 echo 容器启动完成
