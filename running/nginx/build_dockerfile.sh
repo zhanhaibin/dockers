@@ -28,28 +28,28 @@ fi;
 echo ------------------------------------------------------------------
 # nginx.xml配置文件，根据参数复制新文件
 echo 清理nginx.xml配置文件，根据参数复制新文件
-if [ -e "/srv/git/ibas/nginx/${TAG}.nginx.conf" ] ; then 
-  sudo rm -rf /srv/git/ibas/nginx/${TAG}.nginx.conf
+if [ -e "/srv/ibas/nginx/${TAG}.nginx.conf" ] ; then 
+  sudo rm -rf /srv/ibas/nginx/${TAG}.nginx.conf
 fi;
-cp /srv/git/ibas/nginx/ibas.nginx.conf /srv/git/ibas/nginx/${TAG}.nginx.conf 
+cp /srv/ibas/nginx/ibas.nginx.conf /srv/ibas/nginx/${TAG}.nginx.conf 
 
 # 替换数据库名称
-sed -i "s/SERVERNAME/$TAG-SERVICE/g" /srv/git/ibas/nginx/${TAG}.nginx.conf
+sed -i "s/SERVERNAME/$TAG-SERVICE/g" /srv/ibas/nginx/${TAG}.nginx.conf
 echo 查看nginx.conf配置文件
-cat /srv/git/ibas/nginx/${TAG}.nginx.conf
+cat /srv/ibas/nginx/${TAG}.nginx.conf
 echo ------------------------------------------------------------------
 # 启动容器
 echo 容器启动： ${TAG}-WEB 
 # 从ibasCustomers.xml中，读取客户的端口号
-PORT=$(cat /srv/git/ibas/nginx/ibasCustomers.xml|grep "<"${TAG}">"|cut -d">" -f2|cut -d "<" -f1)
+PORT=$(cat /srv/ibas/nginx/ibasCustomers.xml|grep "<"${TAG}">"|cut -d">" -f2|cut -d "<" -f1)
 # 启动容器
 docker run -it --name=${TAG}-WEB -m 128m --memory-swap 0 -v /etc/localtime:/etc/localtime -p ${PORT}:80 --link=${TAG}-SERVICE:${TAG}-SERVICE -d ${NAME_TAG}
 
 
 # 拷贝配置文件到容器
 echo 拷贝配置文件到容器
-docker cp /srv/git/ibas/nginx/${TAG}.nginx.conf ${TAG}-WEB:/etc/nginx/nginx.conf
-docker cp /srv/git/ibas/resources/ ${TAG}-WEB:/usr/share/nginx/webapps/root/openui5/
+docker cp /srv/ibas/nginx/${TAG}.nginx.conf ${TAG}-WEB:/etc/nginx/nginx.conf
+docker cp /srv/ibas/resources/ ${TAG}-WEB:/usr/share/nginx/webapps/root/openui5/
 echo ------------------------------------------------------------------
 
 # 重启容器nginx服务
