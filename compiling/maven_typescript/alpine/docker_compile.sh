@@ -52,6 +52,6 @@ docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh  \
 # 清理资源
 echo --停止容器：
 docker stop ${DOCKER_ID}
-docker rm -fv ${DOCKER_ID}
-echo --结果位置：${DOCKER_ID}:${CODE_HOME}/ibas_packages
+echo --删除容器：
+docker rm -fv ${DOCKER_ID} 
 echo --操作完成
