@@ -37,23 +37,21 @@ docker cp ${WORK_FOLDER}/git-ibas-framework.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/git-ibas.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/git-ibas-cloud.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${CODE_HOME}
-
+docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${MAVEN_HOME}/conf/
 
 echo --开始运行脚本
 # 下载代码
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas-cloud.sh
-# 编译代码
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/builds.sh
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/compiles.sh
-# 整理包
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/copy_wars.sh ${CODE_HOME}
-# 发布包
-docker cp ${CODE_HOME}/settings.xml ${DOCKER_ID}:${MAVEN_HOME}/conf/
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/deploy_wars.sh
+
+docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh  \
+  && ${CODE_HOME}/git-ibas-cloud.sh \
+  && ${CODE_HOME}/builds.sh \
+  && ${CODE_HOME}/compiles.sh \
+  && ${CODE_HOME}/copy_wars.sh \
+  && ${CODE_HOME}/deploy_wars.sh  
+
 # 清理资源
 echo --停止容器：
 docker stop ${DOCKER_ID}
+docker rm -fv ${DOCKER_ID}
 echo --结果位置：${DOCKER_ID}:${CODE_HOME}/ibas_packages
 echo --操作完成
