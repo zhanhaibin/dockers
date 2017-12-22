@@ -49,7 +49,7 @@ docker run -it --name=${TAG}-WEB -m 128m --memory-swap 0 -v /etc/localtime:/etc/
 # 拷贝配置文件到容器
 echo 拷贝配置文件到容器
 docker cp /srv/ibas/nginx/${TAG}.nginx.conf ${TAG}-WEB:/etc/nginx/nginx.conf
-docker cp /srv/ibas/resources/ ${TAG}-WEB:/usr/share/nginx/webapps/root/openui5/
+#docker cp /srv/ibas/resources/ ${TAG}-WEB:/usr/share/nginx/webapps/root/openui5/
 echo ------------------------------------------------------------------
 
 # 重启容器nginx服务
