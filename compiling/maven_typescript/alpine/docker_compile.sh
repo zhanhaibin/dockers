@@ -42,13 +42,7 @@ docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${MAVEN_HOME}/conf/
 echo --开始运行脚本
 # 下载代码
 
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh  \
-  && ${CODE_HOME}/git-ibas-cloud.sh \
-  && ${CODE_HOME}/builds.sh \
-  && ${CODE_HOME}/compiles.sh \
-  && ${CODE_HOME}/copy_wars.sh \
-  && ${CODE_HOME}/deploy_wars.sh  
-
+docker exec -it ${DOCKER_ID} "${CODE_HOME}/git-ibas.sh && ${CODE_HOME}/git-ibas-cloud.sh && ${CODE_HOME}/builds.sh  && ${CODE_HOME}/compiles.sh && ${CODE_HOME}/copy_wars.sh && ${CODE_HOME}/deploy_wars.sh" 
 # 清理资源
 echo --停止容器：
 docker stop ${DOCKER_ID}
