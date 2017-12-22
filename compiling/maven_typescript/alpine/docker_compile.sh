@@ -37,7 +37,7 @@ docker cp ${WORK_FOLDER}/git-ibas-framework.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/git-ibas.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/git-ibas-cloud.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${MAVEN_HOME}/conf/
+docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${CODE_HOME} 
 
 echo --开始运行脚本
 # 下载代码
