@@ -13,3 +13,4 @@ ibas.purchase
 ibas.sales
 ibas.receiptpayment
 ibas.organizedposts
+ibas.barcode

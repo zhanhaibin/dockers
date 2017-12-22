@@ -13,5 +13,7 @@ ibas.purchase
 ibas.sales
 ibas.receiptpayment
 ibas.organizedposts
+ibas.barcode
 ibas.commoditycenter
 ibas.channelmanagement
+ibas.shoppingclient
