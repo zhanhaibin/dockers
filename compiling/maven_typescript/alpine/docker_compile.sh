@@ -58,5 +58,5 @@ echo --开始运行脚本
 echo --停止容器：
 docker stop ${DOCKER_ID}
 echo --删除容器：
-docker rm -fv ${DOCKER_ID} 
+#docker rm -fv ${DOCKER_ID} 
 echo --操作完成
