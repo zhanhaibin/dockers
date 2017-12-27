@@ -38,11 +38,15 @@ docker cp ${WORK_FOLDER}/git-ibas.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/git-ibas-cloud.sh ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${DOCKER_ID}:${CODE_HOME}
 docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${CODE_HOME} 
+docker cp /srv/ibas/maven/repository ${DOCKER_ID}:${CODE_HOME}
 
 echo --开始运行脚本
 # 下载代码
 
 #docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh && ${CODE_HOME}/git-ibas-cloud.sh && ${CODE_HOME}/builds.sh  && ${CODE_HOME}/compiles.sh && ${CODE_HOME}/copy_wars.sh && ${CODE_HOME}/deploy_wars.sh
+
+# 拷贝maven依赖的jar包
+docker exec -it ${DOCKER_ID} ${CODE_HOME}/copy_mavens.sh
 # 下载代码
  docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh
  docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas-cloud.sh
