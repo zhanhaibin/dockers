@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 set -x
-mkdir /usr/share/nginx/html/apps && /etc/nginx/cert/
+mkdir -p /usr/share/nginx/html/apps 
+mkdir -p /etc/nginx/cert/

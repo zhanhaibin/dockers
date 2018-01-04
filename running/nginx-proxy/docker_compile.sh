@@ -15,7 +15,7 @@ DOCKER_IMAGE=$1
 # 设置默认镜像
 if [ "${DOCKER_IMAGE}" = "" ]
 then
-  DOCKER_IMAGE=colorcoding/nginx:latest
+  DOCKER_IMAGE=nginx:alpine
 fi
 
 echo --工作目录：${WORK_FOLDER}
