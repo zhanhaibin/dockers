@@ -16,3 +16,9 @@ nexus-context-path=/${NEXUS_CONTEXT} 改为：nexus-context-path=/nexus
 docker cp nexus-default.properties  nexus:/opt/sonatype/nexus/etc/
 
 https://app.avacloud.com.cn/nexus 
+
+
+
+
+cat nginx.crt >> /etc/pki/tls/certs/ca-bundle.crt
+  336  service restart docker
