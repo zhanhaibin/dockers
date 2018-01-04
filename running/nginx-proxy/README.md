@@ -22,3 +22,14 @@ https://app.avacloud.com.cn/nexus
 
 cat nginx.crt >> /etc/pki/tls/certs/ca-bundle.crt
   336  service restart docker
+
+
+ location /nexus {
+                proxy_next_upstream http_502 http_504 error timeout invalid_header;
+                proxy_pass http://10.0.8.50:8081/nexus;
+                proxy_redirect off;
+                proxy_set_header Host $host;
+                proxy_set_header X-Real-IP $remote_addr;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto "https";
+        }
