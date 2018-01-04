@@ -23,7 +23,7 @@ VERSION=$(date +%Y%m%d%H%M)
 echo 版本信息："${VERSION}"
 # 仓库地址
 REPOSITORY_URL=$2
-if [ "${REPOSITORY_URL}" == "" ];then REPOSITORY_URL=http://10.0.8.50:8081/repository/maven-releases; fi;
+if [ "${REPOSITORY_URL}" == "" ];then REPOSITORY_URL=http://nexus.avacloud.com.cn/repository/maven-releases; fi;
 # MAVEN参数信息
 REPOSITORY_ID=ibas-maven
 GROUP_ID=org.colorcoding.apps
