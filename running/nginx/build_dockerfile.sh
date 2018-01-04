@@ -43,7 +43,7 @@ echo 容器启动： ${TAG}-WEB
 # 从ibasCustomers.xml中，读取客户的端口号
 PORT=$(cat /srv/ibas/nginx/ibasCustomers.xml|grep "<"${TAG}">"|cut -d">" -f2|cut -d "<" -f1)
 # 启动容器
-docker run -it --name=${TAG}-WEB -m 128m --memory-swap 0 -v /etc/localtime:/etc/localtime -v/srv/ibas/Customers/${TAG}/data/documents_files:/usr/share/nginx/webapps/documents/resources/files/  -p ${PORT}:80 --link=${TAG}-SERVICE:${TAG}-SERVICE -d ${NAME_TAG}
+docker run -it --name=${TAG}-WEB -m 64m --memory-swap 0 -v /etc/localtime:/etc/localtime -v/srv/ibas/Customers/${TAG}/data/documents_files:/usr/share/nginx/webapps/documents/resources/files/  -p ${PORT}:80 --link=${TAG}-SERVICE:${TAG}-SERVICE -d ${NAME_TAG}
 
 
 # 拷贝配置文件到容器
