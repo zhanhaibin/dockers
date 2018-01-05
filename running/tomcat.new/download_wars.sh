@@ -33,7 +33,7 @@ rm ibas.deploy.order.txt
 
 cd ${WORK_FOLDER}
 #nexus3 地址
-server=http://10.0.8.50:8081/repository
+server=http://maven.avacloud.com.cn/repository
 repo=maven-releases
 
 
