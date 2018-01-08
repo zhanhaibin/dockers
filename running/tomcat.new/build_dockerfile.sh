@@ -37,5 +37,6 @@ docker rmi ${RegistoryUrl}/${NAME_TAG}
 echo 容器镜像上传完成
 docker logout ${RegistoryUrl}
 
+echo 启动容器
 ./docker_run.sh ${TAG}
 
