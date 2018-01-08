@@ -7,8 +7,16 @@ echo '  说明：                                                               
 echo '    1. 运行容器                                         '
 echo '                                    '
 echo '****************************************************************************'
-NAME_TAG=$1
-TAG=$2
+# 定义变量
+NAME=colorcoding/tomcat
+RegistoryUrl=docker.avacloud.com.cn
+TAG=$1
+
+echo 登录私有镜像仓库
+docker login -u admin -p AVAtech2018 ${RegistoryUrl}
+echo 上传镜像至私有仓库
+docker pull ${RegistoryUrl}/${NAME_TAG}
+
 # 定义变量
 echo ------------------------------------------------------------------
 # 清理app.xml配置文件，根据参数复制新文件
@@ -24,7 +32,7 @@ echo 查看app.xml配置文件
 cat /srv/ibas/tomcat/conf/${TAG}.app.xml
 # 启动容器
 echo 容器启动： ${TAG}-SERVICE
-docker run -it --name=${TAG}-SERVICE -m 512m --memory-swap 0  -e JAVA_OPTS='-Xmx512m'  -v /etc/localtime:/etc/localtime -v/srv/ibas/Customers/${TAG}/data/:/usr/local/tomcat/ibas/data/ -d ${NAME_TAG}
+docker run -it --name=${TAG}-SERVICE -m 512m --memory-swap 0  -e JAVA_OPTS='-Xmx512m'  -v /etc/localtime:/etc/localtime -v/srv/ibas/Customers/${TAG}/data/:/usr/local/tomcat/ibas/data/ -d {RegistoryUrl}/${NAME_TAG} 
 
 echo ------------------------------------------------------------------
 # 拷贝配置文件到容器
