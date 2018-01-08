@@ -9,6 +9,7 @@ echo '    2. 参数1，构建的镜像标签，默认为时间戳。            
 echo '****************************************************************************'
 # 定义变量
 NAME=colorcoding/tomcat
+RegistoryUrl = docker.avacloud.com.con
 TAG=$1
 if [ "${TAG}" == "" ]; then TAG=$(date +%s); fi;
 NAME_TAG=${NAME}:${TAG}
@@ -19,7 +20,7 @@ echo 开始下载war包
 
 echo 开始构建镜像${NAME_TAG}
 # 调用docker build
-docker build --force-rm --no-cache -f ./dockerfile -t ${NAME_TAG} ./
+docker build --force-rm --no-cache -f ./dockerfile -t ${RegistoryUrl}/${NAME_TAG} ./
 
 if [ "$?" == "0" ]; then
   echo 镜像${NAME_TAG}构建完成
@@ -42,7 +43,7 @@ echo 查看app.xml配置文件
 cat /srv/ibas/tomcat/conf/${TAG}.app.xml
 # 启动容器
 echo 容器启动： ${TAG}-SERVICE
-docker run -it --name=${TAG}-SERVICE -m 512m --memory-swap 0  -e JAVA_OPTS='-Xmx512m'  -v /etc/localtime:/etc/localtime -v/srv/ibas/Customers/${TAG}/data/:/usr/local/tomcat/ibas/data/ -d ${NAME_TAG}
+docker run -it --name=${TAG}-SERVICE -m 512m --memory-swap 0  -e JAVA_OPTS='-Xmx512m'  -v /etc/localtime:/etc/localtime -v/srv/ibas/Customers/${TAG}/data/:/usr/local/tomcat/ibas/data/ -d ${RegistoryUrl}/${NAME_TAG}
 
 echo ------------------------------------------------------------------
 # 拷贝配置文件到容器
@@ -69,5 +70,16 @@ echo ------------------------------------------------------------------
 # 重启容器
 docker restart ${TAG}-SERVICE 
 echo 容器启动完成
+
+echo 客户镜像增加标签
+docker tag ${NAME_TAG} ${RegistoryUrl}/${NAME_TAG} 
+echo 登录私有镜像仓库
+docker login -u admin -p AVAtech2018 ${RegistoryUrl}
+echo 上传镜像至私有仓库
+docker push ${RegistoryUrl}/${NAME_TAG}:${TAG}
+echo 删除本地镜像
+docker rmi ${RegistoryUrl}/${NAME_TAG}:${TAG}
+echo 容器镜像上传完成
+
 
 
