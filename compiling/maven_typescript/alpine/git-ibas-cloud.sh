@@ -41,10 +41,10 @@ fi
 while read file
 do
 	echo 'Git TF pull： '$file
-	rm -r "${file}"
-        git tf clone http://tfs.avatech.com.cn:8080/tfs/ibas_cloud $/"${file}" "${IBAS}${file}"; 
-        # 将ibas_cloud的模块写入编译清单
-        grep -q "$file" compile_order.txt ||  echo "$file" >> compile_order.txt
-        echo '****************************************************************************'
+  if [ -d ${file} ]; then	rm -r "${file}" fi 
+  git tf clone http://tfs.avatech.com.cn:8080/tfs/ibas_cloud $/"${file}" "${IBAS}${file}"; 
+  # 将ibas_cloud的模块写入编译清单
+  grep -q "$file" compile_order.txt ||  echo "$file" >> compile_order.txt
+  echo '****************************************************************************'
 done < ${WORK_FOLDER}/compile_cloud_order.txt 
 cd ${WORK_FOLDER}
