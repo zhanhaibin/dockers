@@ -1,3 +1,4 @@
 ibas.commoditycenter
 ibas.channelmanagement
 ibas.shoppingclient
+ibas.membercenter
