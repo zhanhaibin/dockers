@@ -46,13 +46,9 @@ echo ------------------------------------------------------------------
 # 拷贝文件
 docker cp deploy_documents.sh ${TAG}-SERVICE:/usr/local/tomcat/
 # 执行创建数据库脚本
-echo 开始创建数据库：${TAG}
-docker exec -it ${TAG}-SERVICE ./initialize_datastructures.sh
-echo 数据库创建完成
-echo ------------------------------------------------------------------
-echo 开始初始化数据：${TAG}
-docker exec -it ${TAG}-SERVICE ./initialize_datas.sh
-echo 初始化数据完成
+echo 开始创建数据库、数据：${TAG}
+docker exec -it ${TAG}-SERVICE ./initialize_apps.sh
+echo 初始化数据库、数据
 echo ------------------------------------------------------------------
 echo 执行创建文件文件软链接
 docker exec -it ${TAG}-SERVICE ./deploy_documents.sh 
