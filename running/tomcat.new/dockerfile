@@ -40,13 +40,11 @@ RUN set -x \
     && chmod -R 777 ${IBAS_DEPLOY}
 
 
-# 定义时区
-# debian版本
-#RUN /bin/cp /usr/shareicd/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' > /etc/timezone 
+# 定义时区  移到基础镜像处理，此处不需要单独设置了
 #定义环境变量  
-ENV  TIME_ZONE Asiz/Shanghai
+#ENV  TIME_ZONE Asiz/Shanghai
 #dockerfile增加命令
-RUN  apk add --no-cache tzdata && echo "${TIME_ZONE}" > /etc/timezone && ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
+#RUN  apk add --no-cache tzdata && echo "${TIME_ZONE}" > /etc/timezone && ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
 
 # 设置工作目录
 WORKDIR ${CATALINA_HOME}
