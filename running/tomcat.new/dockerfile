@@ -1,5 +1,5 @@
 # 基于colorcoding/tomcat:ibas镜像
-FROM colorcoding/tomcat:ibas
+FROM colorcoding/tomcat:ibas-alpine
 # 作者
 MAINTAINER ZHANHAIBIN
 
