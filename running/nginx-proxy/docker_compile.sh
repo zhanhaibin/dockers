@@ -29,4 +29,8 @@ docker cp entrypoint.sh ${DOCKER_ID}:/usr/share/nginx/
 docker exec -it ${DOCKER_ID} ./usr/share/nginx/entrypoint.sh
 docker cp /srv/ibas/nginx-proxy/apps ${DOCKER_ID}:/usr/share/nginx/html/
 docker cp /srv/ibas/nginx-proxy/cert ${DOCKER_ID}:/etc/nginx/
- 
+docker cp index.html ${DOCKER_ID}:/usr/share/nginx/html/
+docker cp nginx.conf ${DOCKER_ID}:/etc/nginx/
+
+
+docker restart ${DOCKER_ID}
