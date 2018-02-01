@@ -90,8 +90,8 @@ additional information.
   this purpose.  This is the recommended approach.  
 
   ```
-  $ docker run -d --name nexus-data sonatype/nexus echo "data-only container for Nexus"
-  $ docker run -d -p 8081:8081 --name nexus --volumes-from nexus-data sonatype/nexus
+  $ docker run -d --name nexus-data sonatype/nexus3 echo "data-only container for Nexus"
+  $ docker run -d -p 8081:8081 --name nexus -e MAX_HEAP=768m -v /etc/localtime:/etc/localtime  --volumes-from nexus-data sonatype/nexus3
   ```
 
   2. *Mount a host directory as the volume*.  This is not portable, as it
