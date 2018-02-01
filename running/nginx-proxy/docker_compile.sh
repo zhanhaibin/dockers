@@ -21,7 +21,7 @@ fi
 echo --工作目录：${WORK_FOLDER}
 echo --使用镜像：${DOCKER_IMAGE}
 # 启动容器
-DOCKER_ID=`docker run -it --name=nginx -m 64m --memory-swap 0  -p 80:80 -p 443:443 -v /srv/ibas/nginx-proxy/index.html:/usr/share/nginx/html/index.html -v /srv/ibas/nginx-proxy/nginx.conf:/etc/nginx/nginx.conf -d ${DOCKER_IMAGE} `
+DOCKER_ID=`docker run -it --name=nginx -m 64m --memory-swap 0  -p 80:80 -p 443:443 -d ${DOCKER_IMAGE} `
 echo --启动容器：${DOCKER_ID}
 
 echo --拷贝文件
@@ -29,8 +29,8 @@ docker cp entrypoint.sh ${DOCKER_ID}:/usr/share/nginx/
 docker exec -it ${DOCKER_ID} ./usr/share/nginx/entrypoint.sh
 docker cp /srv/ibas/nginx-proxy/apps ${DOCKER_ID}:/usr/share/nginx/html/
 docker cp /srv/ibas/nginx-proxy/cert ${DOCKER_ID}:/etc/nginx/
-#docker cp index.html ${DOCKER_ID}:/usr/share/nginx/html/
-#docker cp nginx.conf ${DOCKER_ID}:/etc/nginx/
+docker cp index.html ${DOCKER_ID}:/usr/share/nginx/html/
+docker cp nginx.conf ${DOCKER_ID}:/etc/nginx/
 
 
 docker restart ${DOCKER_ID}
