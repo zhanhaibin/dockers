@@ -33,3 +33,6 @@ cat nginx.crt >> /etc/pki/tls/certs/ca-bundle.crt
                 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
                 proxy_set_header X-Forwarded-Proto "https";
         }
+
+
+docker run -d -p 8081:8081 -p 5000:5000 --name nexus -e MAX_HEAP=768m -v /etc/localtime:/etc/localtime  --volumes-from nexus-data sonatype/nexus3
