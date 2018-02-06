@@ -1,0 +1,8 @@
+# 基于nginx:alpine镜像的ibas镜像
+# OS：alpine
+FROM nginx:alpine
+
+# 作者
+MAINTAINER zhanhaibin 
+
+RUN apk --update  add curl wget unzip
