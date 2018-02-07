@@ -5,6 +5,7 @@ ibas.importexport
 ibas.documents
 ibas.approvalprocess
 ibas.feedback
+ibas.reportanalysis
 ibas.materials
 ibas.businesspartner
 ibas.purchase

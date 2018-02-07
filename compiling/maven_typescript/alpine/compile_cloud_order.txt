@@ -1,4 +1,4 @@
-ibas.reportanalysis
+ibas.businessobjectenterprise 
 ibas.businessone
 ibas.commoditycenter
 ibas.channelmanagement
