@@ -10,6 +10,6 @@ RUN set -x \
 # 更新源
     && apk update \
 # 安装解压、网络请求
-    && apk add --no-cache unzip curl wget \
+    && apk add --no-cache curl wget unzip \
 # 删除源
     && rm -rf /var/cache/apk/*
