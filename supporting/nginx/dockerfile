@@ -5,4 +5,11 @@ FROM nginx:alpine
 # 作者
 MAINTAINER zhanhaibin 
 
-RUN apk --update  add curl wget unzip
+# 安装工具
+RUN set -x \
+# 更新源
+    && apk update \
+# 安装解压、网络请求
+    && apk add --no-cache unzip curl wget \
+# 删除源
+    && rm -rf /var/cache/apk/*
