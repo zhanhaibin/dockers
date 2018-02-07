@@ -6,6 +6,7 @@ ibas.documents
 ibas.approvalprocess
 ibas.feedback
 ibas.reportanalysis
+ibas.businessobjectsenterprise
 ibas.businessone
 ibas.materials
 ibas.businesspartner
