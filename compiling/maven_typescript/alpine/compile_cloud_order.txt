@@ -1,4 +1,4 @@
-ibas.businessobjectenterprise 
+ibas.businessobjectsenterprise 
 ibas.businessone
 ibas.commoditycenter
 ibas.channelmanagement
