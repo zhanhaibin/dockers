@@ -1,3 +1,5 @@
+ibas.reportanalysis
+ibas.businessone
 ibas.commoditycenter
 ibas.channelmanagement
 ibas.shoppingclient
