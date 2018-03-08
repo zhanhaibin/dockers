@@ -21,7 +21,7 @@ fi
 echo --工作目录：${WORK_FOLDER}
 echo --使用镜像：${DOCKER_IMAGE}
 # 启动容器
-DOCKER_ID=`docker run -it --name=nginx -m 64m --memory-swap 0  -p 80:80 -p 443:443 -d ${DOCKER_IMAGE} `
+DOCKER_ID=`docker run -it --name=nginx -m 64m --memory-swap 0 --restart=always -p 80:80 -p 443:443 -d ${DOCKER_IMAGE} `
 echo --启动容器：${DOCKER_ID}
 
 echo --拷贝文件
