@@ -10,7 +10,7 @@ echo '**************************************************************************
 # 定义变量
 NAME=colorcoding/nginx
 TAG=$1
-if [ "${TAG}" == "" ]; then TAG=$(date +%s); fi;
+if [ "${TAG}" == "" ]; then TAG=ibas-alpine; fi;
 NAME_TAG=${NAME}:${TAG}
 
 echo 开始构建镜像${NAME_TAG}
