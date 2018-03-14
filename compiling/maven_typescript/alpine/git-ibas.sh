@@ -34,7 +34,7 @@ fi
 while read file
 do
 	echo 'Git pull：'${file}
-	git clone https://github.com/color-coding/"${file}".git "${IBAS}${file}"; 
+	git clone --depth 1 https://github.com/color-coding/"${file}".git "${IBAS}${file}"; 
         echo '****************************************************************************'
 done < ${WORK_FOLDER}/compile_order.txt 
 cd ${WORK_FOLDER}
