@@ -21,7 +21,7 @@ fi
 echo --工作目录：${WORK_FOLDER}
 echo --使用镜像：${DOCKER_IMAGE}
 # 启动容器
-DOCKER_ID=`docker run -v  -m 512m --memory-swap 0 /etc/localtime:/etc/localtime -id ${DOCKER_IMAGE}`
+DOCKER_ID=`docker run -m 512m --memory-swap 0 -v  /etc/localtime:/etc/localtime -id ${DOCKER_IMAGE}`
 echo --启动容器：${DOCKER_ID}
 
 CODE_HOME=/home/code
