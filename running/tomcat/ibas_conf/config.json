@@ -1,13 +1,15 @@
 {
   "appSettings": {
     "company": "AVA",
-    "debug": true,
-    "language": "zh_CN",
+    "debug": false,
     "offline": false,
-    "offline|BORepositoryShell": false,
-    "helpUrl": "http://www.baidu.com",
+    "language": "zh_CN",
     "defaultUser": "admin",
     "defaultPassword": "1q2w3e",
+    "application": "vStore",
+    "copyright": "© 2016-2017 avacloud.com.cn",
+    "helpUrl": "http://www.avacloud.com.cn",
+    "welcomeUrl": "http://www.avacloud.com.cn",
     "repositoryAddress|BORepositoryShell": ".../initialfantasy/services/rest/data"
   },
   "languages": [

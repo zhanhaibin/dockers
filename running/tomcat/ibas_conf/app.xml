@@ -6,18 +6,18 @@
         <add key="Company" value="AVA"/>
         <!--配置项目-是否开启调试模式-->
         <add key="DebugMode" value="false" />
-        <!-- 配置项目-消息记录级别 -->
+	<!-- 配置项目-消息记录级别 -->
         <add key="MessageLevel" value="DEBUG" />
         <!-- 配置项目-数据库类型 -->
         <add key="MasterDbType" value="MYSQL" />
         <!-- 配置项目-数据库地址-->
-        <add key="MasterDbServer" value="" />
+        <add key="MasterDbServer" value="*****************************" />
         <!-- 配置项目-数据库名称 -->
-        <add key="MasterDbName" value="" />
+        <add key="MasterDbName" value="c01-01"/>
         <!-- 配置项目-数据库用户名称 -->
-        <add key="MasterDbUserID" value="" />
+        <add key="MasterDbUserID" value="*****" />
         <!-- 配置项目-数据库用户密码 -->
-        <add key="MasterDbUserPassword" value="" />
+        <add key="MasterDbUserPassword" value="*****************" />
         <!--配置项目-序列化管理方式-->
         <add key="SerializationWay" value="jersey" />
         <!--配置项目-对象删除前重新加载 -->
@@ -30,9 +30,9 @@
         <add key="OwnershipWay" value="initial" />
         <!--配置项目-报表工厂，多个时“;”分隔 -->
         <add key="ReporterFactories" value="org.colorcoding.ibas.boe.reporter.ReporterFactory;" />
-        <!-- 配置项目-转换者工厂，多个时“;”分隔 -->
-        <add key="TransformerFactories"  value="org.colorcoding.ibas.importexport.transformers.excel.TransformerFactory;"/>
-        <!-- 配置项目-BOE地址 -->
-        <add key="BOEAddress" value="http://bo.b1plus.cn:8080"/>
+	<!-- 配置项目-转换者工厂，多个时“;”分隔 -->
+	<add key="TransformerFactories"  value="org.colorcoding.ibas.importexport.transformers.excel.TransformerFactory;"/>
+	<!-- 配置项目-BOE地址 -->
+	<add key="BOEAddress" value="http://bo.b1plus.cn:8080"/>
     </appSettings>
 </ns2:configuration>
