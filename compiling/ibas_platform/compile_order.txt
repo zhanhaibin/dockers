@@ -1,0 +1,2 @@
+ibas-typescript
+ibas.initialfantasy
