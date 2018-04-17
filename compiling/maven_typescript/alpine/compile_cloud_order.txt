@@ -5,3 +5,4 @@ ibas.channelmanagement
 ibas.shoppingclient
 ibas.membercenter
 ibas.oauthwechat
+ibas.wechatpay
