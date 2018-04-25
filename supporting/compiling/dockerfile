@@ -1,0 +1,13 @@
+# 基于colorcoding/compiling:ibas-gtf-alpine镜像
+FROM colorcoding/compiling:ibas-gtf-alpine
+
+# 作者
+MAINTAINER ZHANHAIBIN
+
+# 定义环境变量
+ENV \
+  CODE_HOME=home/code
+
+COPY ./settings.xml ${MAVEN_HOME}/conf/
+
+
