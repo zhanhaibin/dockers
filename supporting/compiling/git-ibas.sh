@@ -23,8 +23,8 @@ if [ "${WORK_FOLDER}" == "" ]
 then
   WORK_FOLDER=${STARTUP_FOLDER}
 fi
-
 echo --工作的目录：${WORK_FOLDER}
+
 # 获取编译顺序
 if [ ! -e ${WORK_FOLDER}/compile_order.txt ]
 then
