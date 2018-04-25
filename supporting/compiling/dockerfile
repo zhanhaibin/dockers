@@ -8,6 +8,9 @@ MAINTAINER ZHANHAIBIN
 ENV \
   CODE_HOME=home/code
 
+# 创建数据文件夹
+RUN mkdir -p ~/.m2/repository; 
+
 COPY ./settings.xml ${MAVEN_HOME}/conf/
 
 
