@@ -15,13 +15,13 @@ DOCKER_IMAGE=$1
 # 设置默认镜像
 if [ "${DOCKER_IMAGE}" = "" ]
 then
-  DOCKER_IMAGE=colorcoding/compiling:ibas-gtf-alpine
+  DOCKER_IMAGE=avacloud/compiling:ibas-gtf-alpine
 fi
 
 echo --工作目录：${WORK_FOLDER}
 echo --使用镜像：${DOCKER_IMAGE}
 # 启动容器
-DOCKER_ID=`docker run -m 512m --memory-swap 0 -v /etc/localtime:/etc/localtime  -v /srv/ibas/maven/repository/:~/.m2/ -id ${DOCKER_IMAGE}`
+DOCKER_ID=`docker run -m 512m --memory-swap 0 -v /etc/localtime:/etc/localtime  -v /srv/ibas/maven/repository/:/root/.m2/ -id ${DOCKER_IMAGE}`
 echo --启动容器：${DOCKER_ID}
 
 CODE_HOME=/home/code
