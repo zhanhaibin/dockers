@@ -1,5 +1,4 @@
-ibas.businessobjectsenterprise 
-ibas.businessone
+ibas.businessobjectsenterprise
 ibas.commoditycenter
 ibas.channelmanagement
 ibas.shoppingclient
@@ -7,4 +6,3 @@ ibas.membercenter
 ibas.oauthwechat
 ibas.wechatpay
 ibas.marketingpromotion
-ibas.qidian
