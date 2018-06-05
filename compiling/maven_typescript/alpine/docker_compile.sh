@@ -56,7 +56,6 @@ docker exec -it ${DOCKER_ID} ${CODE_HOME}/copy_mavens.sh
  # 整理包
  docker exec -it ${DOCKER_ID} ${CODE_HOME}/copy_wars.sh 
  # 发布包
- docker cp ${CODE_HOME}/settings.xml ${DOCKER_ID}:${MAVEN_HOME}/conf/
  docker exec -it ${DOCKER_ID} ${CODE_HOME}/deploy_wars.sh
 # 清理资源
 echo --停止容器：
