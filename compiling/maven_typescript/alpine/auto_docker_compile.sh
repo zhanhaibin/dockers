@@ -62,7 +62,7 @@ ${DOCKER} exec -i ${DOCKER_ID} ${CODE_HOME}/copy_wars.sh
 ${DOCKER} exec -i ${DOCKER_ID} ${CODE_HOME}/deploy_wars.sh
 # 清理资源
 echo --停止容器：
-#${DOCKER} stop ${DOCKER_ID}
+${DOCKER} stop ${DOCKER_ID}
 echo --删除容器：
-#docker rm -fv ${DOCKER_ID}
+docker rm -fv ${DOCKER_ID}
 echo --操作完成
