@@ -23,7 +23,7 @@ VERSION=$(date +%Y%m%d%H%M)
 echo 版本信息："${VERSION}"
 # 仓库地址
 REPOSITORY_URL=$2
-if [ "${REPOSITORY_URL}" == "" ];then REPOSITORY_URL=http://192.168.2.10:8081/repository/maven-releases; fi;
+if [ "${REPOSITORY_URL}" == "" ];then REPOSITORY_URL=http://nexus.avacloud.com.cn/repository/maven-releases; fi;
 # MAVEN参数信息
 REPOSITORY_ID=ibas-maven
 GROUP_ID=org.colorcoding.apps
@@ -57,7 +57,7 @@ do
 					if [ "${VERSION}" == "" ]
 					then
 						# 未提供版本号，则使用POM文件
-						mvn deploy:deploy-file \
+						mvn deploy:deploy-file -B \
 						-Dfile=${PACKAGE} \
 						-DpomFile=${WORK_FOLDER}/${line}/pom.xml \
 						-Durl=${REPOSITORY_URL} \
@@ -65,7 +65,7 @@ do
 						-Dpackaging=war
 					else
 						# 提供版本号，独立上传
-						mvn deploy:deploy-file \
+						mvn deploy:deploy-file -B \
 						-DgroupId=${GROUP_ID} \
 						-DartifactId=${ARTIFACT_ID} \
 						-Dversion=${VERSION} \
@@ -85,7 +85,7 @@ do
 					if [ "${VERSION}" == "" ]
 					then
 						# 未提供版本号，则使用POM文件
-						mvn deploy:deploy-file \
+						mvn deploy:deploy-file -B \
 						-Dfile=${PACKAGE} \
 						-DpomFile=${WORK_FOLDER}/${file}/${ARTIFACT_ID}/pom.xml \
 						-Durl=${REPOSITORY_URL} \
@@ -93,7 +93,7 @@ do
 						-Dpackaging=war
 					else
 						# 提供版本号，独立上传
-						mvn deploy:deploy-file \
+						mvn deploy:deploy-file -B \
 						-DgroupId=${GROUP_ID} \
 						-DartifactId=${ARTIFACT_ID} \
 						-Dversion=${VERSION} \

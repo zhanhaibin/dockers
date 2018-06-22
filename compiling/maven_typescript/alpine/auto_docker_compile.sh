@@ -28,7 +28,6 @@ echo --启动容器：${DOCKER_ID}
 CODE_HOME=/home/code
 echo --复制脚本：...:${CODE_HOME}
 # 复制脚本及其他
-echo ${DOCKER} cp ${WORK_FOLDER}/compile_order.txt ${DOCKER_ID}:${CODE_HOME}
 ${DOCKER} cp ${WORK_FOLDER}/compile_order.txt ${DOCKER_ID}:${CODE_HOME}
 ${DOCKER} cp ${WORK_FOLDER}/builds.sh ${DOCKER_ID}:${CODE_HOME}
 ${DOCKER} cp ${WORK_FOLDER}/compiles.sh ${DOCKER_ID}:${CODE_HOME}
@@ -40,7 +39,7 @@ ${DOCKER} cp ${WORK_FOLDER}/git-ibas.sh ${DOCKER_ID}:${CODE_HOME}
 ${DOCKER} cp ${WORK_FOLDER}/git-ibas-cloud.sh ${DOCKER_ID}:${CODE_HOME}
 ${DOCKER} cp ${WORK_FOLDER}/compile_cloud_order.txt ${DOCKER_ID}:${CODE_HOME}
 ${DOCKER} cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${CODE_HOME}
-${DOCKER} cp /srv/ibas/maven/repository ${DOCKER_ID}:${CODE_HOME}
+${DOCKER} cp /mnt/ibas/maven/repository ${DOCKER_ID}:${CODE_HOME}
 ${DOCKER} cp ${WORK_FOLDER}/copy_mavens.sh ${DOCKER_ID}:${CODE_HOME}
 echo --开始运行脚本
 # 下载代码
@@ -64,5 +63,5 @@ ${DOCKER} exec -i ${DOCKER_ID} ${CODE_HOME}/deploy_wars.sh
 echo --停止容器：
 ${DOCKER} stop ${DOCKER_ID}
 echo --删除容器：
-docker rm -fv ${DOCKER_ID}
+${DOCKER} rm -fv ${DOCKER_ID}
 echo --操作完成
