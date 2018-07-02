@@ -12,5 +12,5 @@ ibas.purchase
 ibas.sales
 ibas.receiptpayment
 ibas.organizedposts
-ibas.barcode
 ibas.thirdpartyapp
+ibas.barcode
