@@ -1,4 +1,3 @@
-ibas.businessobjectsenterprise
 ibas.commoditycenter
 ibas.channelmanagement
 ibas.shoppingclient
