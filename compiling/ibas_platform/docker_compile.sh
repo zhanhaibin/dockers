@@ -21,46 +21,46 @@ fi
 echo --工作目录：${WORK_FOLDER}
 echo --使用镜像：${DOCKER_IMAGE}
 # 启动容器
-DOCKER_ID=`docker run -m 512m --memory-swap 0 -v  /etc/localtime:/etc/localtime -id ${DOCKER_IMAGE}`
+DOCKER_ID=`sudo docker run -m 512m --memory-swap 0 -v  /etc/localtime:/etc/localtime -id ${DOCKER_IMAGE}`
 echo --启动容器：${DOCKER_ID}
 
 CODE_HOME=/home/code
 echo --复制脚本：...:${CODE_HOME}
 # 复制脚本及其他
-docker cp ${WORK_FOLDER}/compile_order.txt ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/builds.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/compiles.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/deploy_wars.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/copy_wars.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/git-btulz.transforms.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/git-ibas-framework.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/git-ibas.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/git-ibas-cloud.sh ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${CODE_HOME} 
-docker cp /srv/ibas/maven/repository ${DOCKER_ID}:${CODE_HOME}
-docker cp ${WORK_FOLDER}/copy_mavens.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/compile_order.txt ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/builds.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/compiles.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/deploy_wars.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/copy_wars.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-btulz.transforms.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-ibas-framework.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-ibas.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-ibas-cloud.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/settings.xml ${sudo docker_ID}:${CODE_HOME} 
+sudo docker cp /srv/ibas/maven/repository ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/copy_mavens.sh ${sudo docker_ID}:${CODE_HOME}
 echo --开始运行脚本
 # 下载代码
 
-#docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh && ${CODE_HOME}/git-ibas-cloud.sh && ${CODE_HOME}/builds.sh  && ${CODE_HOME}/compiles.sh && ${CODE_HOME}/copy_wars.sh && ${CODE_HOME}/deploy_wars.sh
+#sudo docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh && ${CODE_HOME}/git-ibas-cloud.sh && ${CODE_HOME}/builds.sh  && ${CODE_HOME}/compiles.sh && ${CODE_HOME}/copy_wars.sh && ${CODE_HOME}/deploy_wars.sh
 
 # 拷贝maven依赖的jar包
-docker exec -it ${DOCKER_ID} ${CODE_HOME}/copy_mavens.sh
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/copy_mavens.sh
 # 下载代码
- docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh
- docker exec -it ${DOCKER_ID} ${CODE_HOME}/git-ibas-cloud.sh
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/git-ibas-cloud.sh
  # 编译代码
- docker exec -it ${DOCKER_ID} ${CODE_HOME}/builds.sh
- docker exec -it ${DOCKER_ID} ${CODE_HOME}/compiles.sh
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/builds.sh
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/compiles.sh
  # 整理包
- docker exec -it ${DOCKER_ID} ${CODE_HOME}/copy_wars.sh 
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/copy_wars.sh 
  # 发布包
- docker cp ${CODE_HOME}/settings.xml ${DOCKER_ID}:${MAVEN_HOME}/conf/
- docker exec -it ${DOCKER_ID} ${CODE_HOME}/deploy_wars.sh
+sudo docker cp ${CODE_HOME}/settings.xml ${DOCKER_ID}:${MAVEN_HOME}/conf/
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/deploy_wars.sh
 # 清理资源
 echo --停止容器：
-docker stop ${DOCKER_ID}
+sudo docker stop ${DOCKER_ID}
 echo --删除容器：
-#docker rm -fv ${DOCKER_ID} 
+sudo docker rm -fv ${DOCKER_ID} 
 echo --操作完成
