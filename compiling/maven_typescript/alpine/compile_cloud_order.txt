@@ -4,3 +4,4 @@ ibas.shoppingclient
 ibas.membercenter
 ibas.wechatpay
 ibas.marketingpromotion
+ibas.boan
