@@ -13,7 +13,9 @@ RegistoryUrl=docker.avacloud.com.cn
 NAME=$1
 TAG=$2
 ACCOUNT=$3
+PORT=$4
 
+if [ "{$4}" == "" ]; then PORT=82; fi;
 
 # 启动容器
 echo 容器启动： ${ACCOUNT}-WEB
@@ -24,7 +26,7 @@ docker run -it --name=${ACCOUNT}-WEB -m 64m --memory-swap 0 -v /etc/localtime:/e
 
 # 拷贝配置文件到容器
 echo 拷贝配置文件到容器
-docker cp /srv/ibas/nginx/${ACCOUNT}.nginx.conf ${ACCOUNT}-WEB:/etc/nginx/nginx.conf
+#docker cp /srv/ibas/nginx/${ACCOUNT}.nginx.conf ${ACCOUNT}-WEB:/etc/nginx/nginx.conf
 #docker cp /srv/ibas/resources/ ${TAG}-WEB:/usr/share/nginx/webapps/root/openui5/
 echo ------------------------------------------------------------------
 
