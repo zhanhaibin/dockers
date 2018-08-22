@@ -17,9 +17,9 @@ PORT=$4
 
 if [ "{$4}" == "" ]; then PORT=82; fi;
 
+
 # 启动容器
 echo 容器启动： ${ACCOUNT}-WEB
-
 # 启动容器
 docker run -it --name=${ACCOUNT}-WEB -m 64m --memory-swap 0 -v /etc/localtime:/etc/localtime -v /mnt/customers/${ACCOUNT}/ibas/data/documents_files:/usr/share/nginx/webapps/documents/resources/files/  -p ${PORT}:80 --link=${ACCOUNT}-SERVICE:${ACCOUNT}-SERVICE -d ${RegistoryUrl}/${NAME}:${TAG}
 
@@ -27,7 +27,6 @@ docker run -it --name=${ACCOUNT}-WEB -m 64m --memory-swap 0 -v /etc/localtime:/e
 # 拷贝配置文件到容器
 echo 拷贝配置文件到容器
 #docker cp /srv/ibas/nginx/${ACCOUNT}.nginx.conf ${ACCOUNT}-WEB:/etc/nginx/nginx.conf
-#docker cp /srv/ibas/resources/ ${TAG}-WEB:/usr/share/nginx/webapps/root/openui5/
 echo ------------------------------------------------------------------
 
 # 重启容器nginx服务
