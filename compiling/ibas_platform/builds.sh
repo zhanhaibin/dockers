@@ -61,7 +61,7 @@ do
     do
       compressed=${file%%.js*}.min.js
       echo --开始压缩：${file}
-      uglifyjs --compress --keep-classnames --keep-fnames --mangle --output ${compressed} ${file}
+      uglifyjs --compress --safari10 --keep-classnames --keep-fnames --mangle --output ${compressed} ${file}
     done
   fi
   echo '****************************************************************************'
