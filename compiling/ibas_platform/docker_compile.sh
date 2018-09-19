@@ -40,6 +40,10 @@ sudo docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${sudo docker_ID}:${CODE_H
 sudo docker cp ${WORK_FOLDER}/settings.xml ${sudo docker_ID}:${CODE_HOME} 
 sudo docker cp /srv/ibas/maven/repository ${sudo docker_ID}:${CODE_HOME}
 sudo docker cp ${WORK_FOLDER}/copy_mavens.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/copy_dependent.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/compile_dependent_order.txt ${DOCKER_ID}:${CODE_HOME}
+
+
 echo --开始运行脚本
 # 下载代码
 
@@ -50,6 +54,10 @@ sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/copy_mavens.sh
 # 下载代码
 sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/git-ibas.sh
 sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/git-ibas-cloud.sh
+
+
+sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/copy_dependent.sh
+
  # 编译代码
 sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/builds.sh
 sudo docker exec -i ${DOCKER_ID} ${CODE_HOME}/compiles.sh
