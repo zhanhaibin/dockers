@@ -28,18 +28,18 @@ CODE_HOME=/home/code
 echo --复制脚本：...:${CODE_HOME}
 # 复制脚本及其他
 sudo docker cp ${WORK_FOLDER}/compile_order.txt ${DOCKER_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/builds.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/compiles.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/deploy_wars.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/copy_wars.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/git-btulz.transforms.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/git-ibas-framework.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/git-ibas.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/git-ibas-cloud.sh ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/settings.xml ${sudo docker_ID}:${CODE_HOME} 
-sudo docker cp /srv/ibas/maven/repository ${sudo docker_ID}:${CODE_HOME}
-sudo docker cp ${WORK_FOLDER}/copy_mavens.sh ${sudo docker_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/builds.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/compiles.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/deploy_wars.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/copy_wars.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-btulz.transforms.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-ibas-framework.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-ibas.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/git-ibas-cloud.sh ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/compile_cloud_order.txt ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/settings.xml ${DOCKER_ID}:${CODE_HOME} 
+sudo docker cp /srv/ibas/maven/repository ${DOCKER_ID}:${CODE_HOME}
+sudo docker cp ${WORK_FOLDER}/copy_mavens.sh ${DOCKER_ID}:${CODE_HOME}
 sudo docker cp ${WORK_FOLDER}/copy_dependent.sh ${DOCKER_ID}:${CODE_HOME}
 sudo docker cp ${WORK_FOLDER}/compile_dependent_order.txt ${DOCKER_ID}:${CODE_HOME}
 
