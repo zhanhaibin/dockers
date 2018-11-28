@@ -1,0 +1,28 @@
+# escape=`
+# 基于[windows server core]镜像
+FROM colorcoding/tomcat:ibas-wincore
+
+# 维护者
+LABEL maintainer="Niuren.Zhu <niuren.zhu@icloud.com>"
+
+# 拷贝程序包
+ADD ["packages/Windows.tar.gz", "C:/"]
+ADD ["packages/SqlNativeClient.tar.gz", "C:/packages/"]
+ADD ["packages/Prerequisites.tar", "C:/packages/"]
+ADD ["packages/DI API.tar", "C:/packages/"]
+
+# 使用Powershell
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+# 安装程序包
+RUN Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\Prerequisites\ISSetupPrerequisites\{9B88FC3F-9777-47F9-BDAB-B669D7A7E821}\vcredist.msi',"/qn" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\sqlncli_x86.msi',"/qn","IACCEPTSQLNCLILICENSETERMS=YES" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\sqlncli_x64.msi',"/qn","IACCEPTSQLNCLILICENSETERMS=YES" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\Prerequisites\ISSetupPrerequisites\{8A102FA5-9E73-477b-8937-2ED4C06AF304}\vcredist_x64.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\Prerequisites\ISSetupPrerequisites\{83960519-644A-4722-BA7A-37D23C1D004F}\vcredist_x86.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\Prerequisites\ISSetupPrerequisites\{C4366B56-BE8F-41DA-AEFC-CB5165ADB5D3}\NDP452-KB2901907-x86-x64-AllOS-ENU.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\DI API\setup.exe' -ArgumentList "/S","/v/qn" -Wait -NoNewWindow -PassThru;
+
+# 删除程序包
+SHELL ["cmd", "/S", "/C"]
+RUN RD /S /Q "C:/packages/"
