@@ -14,6 +14,11 @@ B1 DIAPI的容器
 docker build --rm --force-rm -f ./dockerfile-b193 -t tomcat:ibas-b193 ./
 docker run -it --name ibas-b193-demo -p 8080:8080 tomcat:ibas-b193
 docker exec -it ibas-b193-demo cmd
+
+docker cp packages\hosts ibas-b193-demo:C:\Windows\System32\drivers\etc\
+docker cp packages\b1-local-machine.xml ibas-b193-demo:'/C:/Program Files/SAP/SAP Business One DI API/Conf/'
+docker cp packages\regSLDaddress.ps1 ibas-b193-demo:C:\
+docker exec -it ibas-b193-demo powershell C:\regSLDaddress.ps1
 ~~~
 * others
 ~~~

@@ -13,8 +13,6 @@ ADD ["packages/Prerequisites.tar", "C:/packages/"]
 ADD ["packages/DI API.tar", "C:/packages/"]
 ADD ["packages/SLDAgentMSI_x64.tar", "C:/packages/"]
 ADD ["packages/avacloud.cc/","C:/packages/avacloud.cc/"]
-COPY ["packages/regSLDaddress.ps1","C:/packages/"]
-COPY ["packages/hosts","C:/Windows/System32/drivers/etc/"]
 
 # 使用Powershell
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -40,12 +38,6 @@ RUN	Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\SLDAgentMSI_
     Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{C29E74A6-5565-44A4-AC93-A25720D76AAA}\vcredist_x64.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
     Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{83960519-644A-4722-BA7A-37D23C1D004F}\vcredist_x86.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
     Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\SLDAgent_x64.exe' -ArgumentList "/S","/v/qn" -Wait -NoNewWindow -PassThru;
-
-#拷贝DI配置文件
-COPY ["packages/b1-local-machine.xml","C:/Program Files/SAP/SAP Business One DI API/Conf"]
-
-# 注册SAP SLDAddress
-RUN powershell -executionpolicy unrestricted C:\packages\regSLDaddress.ps1	 ;
 
 
 # 删除程序包
