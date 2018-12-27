@@ -1,0 +1,32 @@
+# escape=`
+# 基于[windows server core]镜像
+FROM colorcoding/tomcat:ibas-b192
+
+# 维护者
+LABEL maintainer="zhanhaibin"
+
+
+# 拷贝程序包
+ADD ["packages/SLDAgentMSI_x64.tar", "C:/packages/"]
+ADD ["packages/haohua-CA/","C:/packages/haohua-CA/"]
+
+# 使用Powershell
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+# 安装证书
+RUN Import-PfxCertificate -FilePath 'C:\packages\haohua-CA\keystore.pfx' -CertStoreLocation Cert:\LocalMachine\Root -Password (ConvertTo-SecureString -String "avatech" -Force –AsPlainText) ;`
+    Import-Certificate -FilePath 'C:\packages\haohua-CA\myCA.cer' -CertStoreLocation Cert:\LocalMachine\Root ;`
+    Import-Certificate -FilePath 'C:\packages\haohua-CA\ClientCert.crt' -CertStoreLocation Cert:\LocalMachine\CA ;
+
+# 安装SLD程序包	
+RUN	Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{66EE9CF0-7792-49B6-81E1-EDCC77B800B3}\msodbcsql.msi',"/qn","IACCEPTMSODBCSQLLICENSETERMS=YES" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{5D5FFF39-015A-4DC8-A97F-6D51BAE90EDC}\SAPJVM8_x64.msi',"/qn","IACCEPTSQLNCLILICENSETERMS=YES" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{57bcd1d4-2de9-49d9-bc0c-3f4263e9970e}\WindowsInstaller-KB893803-v2-x86.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{C29E74A6-5565-44A4-AC93-A25720D76AAA}\vcredist_x64.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{83960519-644A-4722-BA7A-37D23C1D004F}\vcredist_x86.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
+    Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\SLDAgent_x64.exe' -ArgumentList "/S","/v/qn" -Wait -NoNewWindow -PassThru;
+
+
+# 删除程序包
+SHELL ["cmd", "/S", "/C"]
+RUN RD /S /Q "C:/packages/"
