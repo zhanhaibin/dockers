@@ -12,15 +12,15 @@ ADD ["packages/SqlNativeClient.tar.gz", "C:/packages/"]
 ADD ["packages/Prerequisites.tar", "C:/packages/"]
 ADD ["packages/DI API.tar", "C:/packages/"]
 ADD ["packages/SLDAgentMSI_x64.tar", "C:/packages/"]
-ADD ["packages/avacloud.cc/","C:/packages/avacloud.cc/"]
+ADD ["packages/haohua-CA/","C:/packages/haohua-CA/"]
 
 # 使用Powershell
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 # 安装证书
-RUN Import-PfxCertificate -FilePath 'C:\packages\avacloud.cc\keystore.pfx' -CertStoreLocation Cert:\LocalMachine\Root -Password (ConvertTo-SecureString -String "avatech" -Force –AsPlainText) ;`
-    Import-Certificate -FilePath 'C:\packages\avacloud.cc\myCA.cer' -CertStoreLocation Cert:\LocalMachine\Root ;`
-    Import-Certificate -FilePath 'C:\packages\avacloud.cc\ClientCert.crt' -CertStoreLocation Cert:\LocalMachine\CA ;
+RUN Import-PfxCertificate -FilePath 'C:\packages\haohua-CA\keystore.pfx' -CertStoreLocation Cert:\LocalMachine\Root -Password (ConvertTo-SecureString -String "avatech" -Force –AsPlainText) ;`
+    Import-Certificate -FilePath 'C:\packages\haohua-CA\myCA.cer' -CertStoreLocation Cert:\LocalMachine\Root ;`
+    Import-Certificate -FilePath 'C:\packages\haohua-CA\ClientCert.crt' -CertStoreLocation Cert:\LocalMachine\CA ;
 
 # 安装DI程序包
 RUN Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\Prerequisites\ISSetupPrerequisites\{9B88FC3F-9777-47F9-BDAB-B669D7A7E821}\vcredist.msi',"/qn" -Wait -NoNewWindow -PassThru; `
@@ -39,7 +39,15 @@ RUN	Start-Process -FilePath msiexec -ArgumentList "/i",'C:\packages\SLDAgentMSI_
     Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\ISSetupPrerequisites\{83960519-644A-4722-BA7A-37D23C1D004F}\vcredist_x86.exe' -ArgumentList "/q" -Wait -NoNewWindow -PassThru; `
     Start-Process -FilePath 'C:\packages\SLDAgentMSI_x64\SLDAgent_x64.exe' -ArgumentList "/S","/v/qn" -Wait -NoNewWindow -PassThru;
 
+COPY ["packages/conf/", "C:/apache-tomcat-8.5.35/conf/"];
+COPY ["packages/hosts", "C:/Windows/System32/drivers/etc/"];
+COPY ["packages/b1-local-machine.xml", "C:/Program Files/SAP/SAP Business One DI API/Conf/"];
+COPY ["packages/regSLDaddress.ps1", "C:/packages/"];
+COPY ["packages/sboapi.jar", "C:/apache-tomcat-8.5.35/ibas_lib/"];
+COPY ["packages/sbowrapper.jar" ,"C:/apache-tomcat-8.5.35/ibas_lib/"];
 
+# 注册SAP SLDAddress
+RUN powershell -executionpolicy unrestricted C:\packages\regSLDaddress.ps1	 ;
 # 删除程序包
 SHELL ["cmd", "/S", "/C"]
 RUN RD /S /Q "C:/packages/"

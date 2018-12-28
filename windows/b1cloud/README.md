@@ -15,10 +15,18 @@ docker build --rm --force-rm -f ./dockerfile-b193 -t tomcat:ibas-b193 ./
 docker run -it --name ibas-b193-demo -p 8080:8080 tomcat:ibas-b193
 docker exec -it ibas-b193-demo cmd
 
-docker cp packages\hosts ibas-b193-demo:C:\Windows\System32\drivers\etc\
-docker cp packages\b1-local-machine.xml ibas-b193-demo:'/C:/Program Files/SAP/SAP Business One DI API/Conf/'
-docker cp packages\regSLDaddress.ps1 ibas-b193-demo:C:\
-docker exec -it ibas-b193-demo powershell C:\regSLDaddress.ps1
+docker build --rm --force-rm -f ./dockerfile -t tomcat:ibas-b192-cloud ./
+docker run -it --name ibas-b192-demo -p 8080:8080 tomcat:ibas-b192-cloud
+docker exec -it ibas-b192-demo cmd
+
+
+docker cp packages\hosts ibas-b192-demo:C:\Windows\System32\drivers\etc\
+docker cp b1-local-machine.xml ibas-b192-demo:'/C:/Program Files/SAP/SAP Business One DI API/Conf/'
+docker cp regSLDaddress.ps1 ibas-b192-demo:C:\
+docker exec -it ibas-b192-demo powershell C:\regSLDaddress.ps1
+docker cp sboapi.jar ibas-b192-demo:C:\apache-tomcat-8.5.35\ibas_lib\
+docker cp sbowrapper.jar ibas-b192-demo:C:\apache-tomcat-8.5.35\ibas_lib\
+
 ~~~
 * others
 ~~~
