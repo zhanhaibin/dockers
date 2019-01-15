@@ -16,7 +16,11 @@ docker run -it --name ibas-b193-demo -p 8080:8080 tomcat:ibas-b193
 docker exec -it ibas-b193-demo cmd
 
 docker build --rm --force-rm -f ./dockerfile -t tomcat:ibas-b192-cloud ./
-docker run -it --name ibas-b192-demo -p 8080:8080 tomcat:ibas-b192-cloud
+docker run -it --name ibas-b192-demo -p 8080:8080  tomcat:ibas-b192-cloud
+#测试
+docker run -it --name ibas-b192-youjia-01 -p 8080:8080 -v C:/vstore/customers/youjia/youjia-01/logs/:C:/apache-tomcat-8.5.35/logs/   -m 1536m --memory-swap 0 -e JAVA_OPTS='-Xmx1280m' --restart=always tomcat:ibas-b192-cloud
+#正式
+docker run -it --name ibas-b192-youjia-03 -p 8081:8080 -v C:/vstore/customers/youjia/youjia-03/logs/:C:/apache-tomcat-8.5.35/logs/   -m 1536m --memory-swap 0 -e JAVA_OPTS='-Xmx1280m' --restart=always tomcat:ibas-b192-cloud
 docker exec -it ibas-b192-demo cmd
 
 
@@ -24,6 +28,8 @@ docker cp packages\hosts ibas-b192-demo:C:\Windows\System32\drivers\etc\
 docker cp b1-local-machine.xml ibas-b192-demo:'/C:/Program Files/SAP/SAP Business One DI API/Conf/'
 docker cp regSLDaddress.ps1 ibas-b192-demo:C:\
 docker exec -it ibas-b192-demo powershell C:\regSLDaddress.ps1
+docker cp sboapi.jar ibas-b192-demo:C:\apache-tomcat-8.5.35\lib\
+docker cp sbowrapper.jar ibas-b192-demo:C:\apache-tomcat-8.5.35\lib\
 docker cp sboapi.jar ibas-b192-demo:C:\apache-tomcat-8.5.35\ibas_lib\
 docker cp sbowrapper.jar ibas-b192-demo:C:\apache-tomcat-8.5.35\ibas_lib\
 
