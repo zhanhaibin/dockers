@@ -1,0 +1,30 @@
+{
+  "appSettings":
+ {
+"application":"Vstore中台-北京皇家正式账套",
+"cacheDBName":"ibas_cloud_c00003_01",
+"company":"AVA",
+"copyright":"© 2016-2018 avacloud.com.cn",
+"debug":false,
+"fullScreen|PHONE":true,
+"helpUrl":"http://www.avacloud.com.cn",
+"language":"zh_CN",
+"offline":false,
+"repositoryAddress|BORepositoryShell":".../initialfantasy/services/rest/data",
+"useCache":false,
+"welcomeImage":"https://openui5.avacloud.com.cn/welcomeimage.png",
+"welcomeUrl":"http://www.avacloud.com.cn",
+"decimalPlaces":6,
+"decimalPlaces|Price":2,
+"decimalPlaces|Quantity":2,
+"decimalPlaces|Sum":2,
+"decimalPlaces|Measurement":2,
+"format|DateTime":"yyyy-MM-dd hh:mm",
+"defaultCurrency":"CNY",
+"wechatRedirectUri": "https://app.avacloud.com.cn/t4v6wfh1/p02/membercenter/test/register/register.html"
+},
+"languages": [
+"zh_CN",
+"en_US"
+]
+}
