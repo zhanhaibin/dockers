@@ -32,8 +32,8 @@ then
 fi
 # 遍历当前目录存
 # 加速github.com访问
-echo "151.101.229.194    github.global.ssl.fastly.net" >>/etc/hosts
-echo "192.30.253.112    github.com" >>/etc/hosts
+#echo "151.101.229.194    github.global.ssl.fastly.net" >>/etc/hosts
+#echo "192.30.253.112    github.com" >>/etc/hosts
 while read file
 do
 	echo 'Git pull：'${file}
