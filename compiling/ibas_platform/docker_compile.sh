@@ -21,7 +21,7 @@ fi
 echo --工作目录：${WORK_FOLDER}
 echo --使用镜像：${DOCKER_IMAGE}
 # 启动容器
-DOCKER_ID=`sudo docker run -m 512m --memory-swap 0 -v  /etc/localtime:/etc/localtime -id ${DOCKER_IMAGE}`
+DOCKER_ID=`sudo docker run -m 512m --memory-swap 0 -v  /etc/localtime:/etc/localtime  -v /mnt/ibas/dockers/compiling/ibas_platform/resolv.conf:/etc/resolv.conf -id ${DOCKER_IMAGE}`
 echo --启动容器：${DOCKER_ID}
 
 CODE_HOME=/home/code
