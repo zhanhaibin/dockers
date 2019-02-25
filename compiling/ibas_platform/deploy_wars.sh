@@ -100,6 +100,8 @@ do
 				-Durl=${REPOSITORY_URL} \
 				-DrepositoryId=${REPOSITORY_ID} \
 				-Dpackaging=war
+
+			echo mvn deploy:deploy-file -B -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID}	-Dversion=${VERSION}	-Dfile=${PACKAGE} -Durl=${REPOSITORY_URL} -DrepositoryId=${REPOSITORY_ID} -Dpackaging=war
 		  fi;
 		done
     fi  

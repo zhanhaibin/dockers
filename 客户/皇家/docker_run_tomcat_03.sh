@@ -7,4 +7,4 @@ port=$3
 tag=$4
 
 
-docker run -it --name=${customer}-${account}-web -v /etc/localtime:/etc/localtime -v /srv/vstore/${customer}-${account}/ibas/data/documents_files:/usr/share/nginx/webapps/documents/resources/files/ -v /srv/vstore/${customer}-${account}/nginx/conf/nginx.conf:/etc/nginx/nginx.conf -p ${port}:80 --restart=always --link=${customer}-${account}-service:${customer}-${account}-service -d ${RegistoryUrl}/c00003/c00003-01/ps-ava-vstore-hj/nginx:${tag}
+docker run -it --name=${customer}-${account}-service  -c 2048 -m 4096m --memory-swap 0  -e JAVA_OPTS='-Xmx768m'  -v /srv/vstore/${customer}-${account}/ibas/:/usr/local/tomcat/ibas/ --link=vstore-mysql:vstore-mysql --restart=always -d ${RegistoryUrl}/c00003/c00003-01/ps-ava-vstore-hj/tomcat:${tag}
