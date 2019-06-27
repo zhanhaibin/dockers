@@ -29,6 +29,7 @@ echo --工作的目录：${WORK_FOLDER}
 # 遍历complie_order.txt
 while read file
 do
+        if [ -z "${file}" ]; then continue; fi;
         echo 'download wars：'${file}
         # Maven artifact location
         name=${file}.service
