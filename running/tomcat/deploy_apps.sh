@@ -30,6 +30,9 @@ if [ ! -e "${IBAS_DATA}" ];then mkdir -p "${IBAS_DATA}"; fi;
 # ibas日志目录
 IBAS_LOG=${IBAS_HOME}/logs
 if [ ! -e "${IBAS_LOG}" ];then mkdir -p "${IBAS_LOG}"; fi;
+# ibas日志目录
+IBAS_I18N=${IBAS_HOME}/languages/i18n
+if [ ! -e "${IBAS_I18N}" ];then mkdir -p "${IBAS_I18N}"; fi;
 # 设置IBAS_PACKAGE目录
 IBAS_PACKAGE=$2
 if [ "${IBAS_PACKAGE}" == "" ];then IBAS_PACKAGE=${WORK_FOLDER}/ibas_packages; fi;
@@ -96,6 +99,15 @@ while read file
 # 映射数据文件夹到统一位置
         if [ -e "${IBAS_DEPLOY}/${folder}/WEB-INF/data" ]; then rm -rf "${IBAS_DEPLOY}/${folder}/WEB-INF/data"; fi;
         ln -s -d "${IBAS_DATA}" "${IBAS_DEPLOY}/${folder}/WEB-INF/"
+# 映射翻译文件夹到统一位置
+        if [ -e "${IBAS_DEPLOY}/${folder}/resources/languages" ]; then 
+                if [ -e "${IBAS_I18N}/${folder}/resources/languages" ]; 
+                        then mkdir -p "${IBAS_I18N}/${folder}/resources/languages";
+                fi; 
+                cp -rp "${IBAS_DEPLOY}/${folder}/resources/" "${IBAS_I18N}/${folder}/resources/"; 
+                rm -rf "${IBAS_DEPLOY}/${folder}/resources/languages"; 
+        fi;
+        ln -s -d "${IBAS_I18N}/${folder}/resources/languages" "${IBAS_DEPLOY}/${folder}/resources/"
 # 集中共享jar包
         if [ -e "${IBAS_LIB}" ]
         then
